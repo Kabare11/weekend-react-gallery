@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+
 // PUT /gallery/like/:id
 router.put('/like/:id', (req, res) => {
   // code here
