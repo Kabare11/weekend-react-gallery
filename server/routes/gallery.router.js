@@ -2,16 +2,16 @@ const express = require('express');
 const pool = require("../modules/pool.js")
 const router = express.Router();
 
-
-
 // PUT /gallery/like/:id
 
-router.put('gallery/like:id', (req, res) => {
+router.put('/like/:id', (req, res) => {
 
   // code here
   let idToGet = req.params.id
-  console.log("itemID", idToGet)
-  const queryText = `UPDATE "items" SET "isPurchased"= TRUE WHERE "id" = $1;`
+  const queryText = `UPDATE "gallery"
+   SET "likes" = "likes" + 1 
+   WHERE "id" = $1;
+   `
   const queryParam = [idToGet]
   pool.query(queryText, queryParam)
     .then((result) => {

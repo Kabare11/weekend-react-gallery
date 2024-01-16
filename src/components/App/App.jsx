@@ -1,4 +1,5 @@
 import GalleryList from "../GalleryList/GalleryList";
+import "../../index.css";
 
 function App() {
   return (
@@ -6,6 +7,8 @@ function App() {
       <header>
         <h1>React Gallery</h1>
       </header>
+      
+      //todo Parent of all gallery items
       <GalleryList />
     </div>
   );

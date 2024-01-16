@@ -1,31 +1,38 @@
 import React, { useState } from "react";
+import axios from "axios";
+
+//! this is the galleryItem that displays likes, image, title and description
 
 const GalleryItem = ({ item }) => {
-  const { id, title, description, url } = item;
+  const { id, title, description, url, likes } = item;
+
+  //* conditional rendering useState
   const [showImage, setShowImage] = useState(true);
+
+  const handleLikeClick = () => {
+    axios.put(`/api/gallery/like/${id}`).catch((err) => console.log(err));
+  };
+
   return (
     <div data-testid="galleryItem">
       <p>The gallery goes here!</p>
       <h1>{title}</h1>
+
       <div
         data-testid="toggle"
-        style={{
-          width: "150px",
-          height: "150px",
-        }}
-        className=""
+        className="image"
         onClick={() => setShowImage(!showImage)}
       >
         {showImage ? (
-          <img src={url} />
+          <img className="image" src={url} />
         ) : (
           <p data-testid="description">{description}</p>
         )}
       </div>
-      <button className="" data-testid="like">
+      <button onClick={handleLikeClick} className="" data-testid="like">
         Love it!
       </button>
-      <div className="">0 likes</div>
+      <div className="">{likes} likes</div>
     </div>
   );
 };
